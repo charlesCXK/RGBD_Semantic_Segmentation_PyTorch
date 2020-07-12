@@ -32,7 +32,7 @@ class DeepLab(nn.Module):
                                 bn_momentum=config.bn_momentum,
                                 deep_stem=True, stem_width=64)
         self.dilate = 2
-        # self.resnet.layer4.apply(partial(self._nostride_dilate, dilate= self.dilate) )
+
         for m in self.backbone.layer4.children():
             m.apply(partial(self._nostride_dilate, dilate=self.dilate))
             self.dilate *= 2
@@ -176,8 +176,6 @@ class Head(nn.Module):
     def forward(self, f_list):
         f = f_list[-1]
         encoder_out = f
-        # feat_8x = F.interpolate(f, scale_factor=2, mode='bilinear', align_corners=True)
-
         f = self.aspp(f)
 
         low_level_features = f_list[0]
@@ -191,7 +189,6 @@ class Head(nn.Module):
         pred = self.classify(f)
 
         aux_fm = self.auxlayer(encoder_out)
-        # aux_fm = self.auxlayer(feat_8x)
         return pred, aux_fm
 
 if __name__ == '__main__':
