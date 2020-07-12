@@ -2,7 +2,7 @@
 
 Official PyTorch implementation of "Bi-directional Cross-Modality Feature Propagation with Separation-and-Aggregation Gate for RGB-D Semantic Segmentation" ([ECCV, 2020](http://eccv2020.eu/)).
 
-<img src='pic/arch.pdf'>
+<img src='pic/arch.png'>
 
 ## Set Up
 
