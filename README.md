@@ -33,7 +33,7 @@ You could download the official NYU Depth V2 data [here](https://cs.nyu.edu/~sil
 
 #### How to generate HHA maps?
 
-If you want to generate HHA maps from Depth map, please refer to [https://github.com/charlesCXK/Depth2HHA-python](https://github.com/charlesCXK/Depth2HHA-python).
+If you want to generate HHA maps from Depth maps, please refer to [https://github.com/charlesCXK/Depth2HHA-python](https://github.com/charlesCXK/Depth2HHA-python).
 
 ## Citation
 
