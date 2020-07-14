@@ -1,4 +1,4 @@
-name: sa
+name: rgbd
 channels:
   - defaults
 dependencies:
@@ -297,5 +297,5 @@ dependencies:
     - torch==1.0.0
     - torchsummary==1.5.1
     - torchvision==0.2.2.post3
-prefix: /anaconda/envs/sa
+prefix: /anaconda/envs/rgbd
 

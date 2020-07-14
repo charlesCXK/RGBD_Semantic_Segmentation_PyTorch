@@ -73,8 +73,8 @@ The code is developed using Python 3.6 with PyTorch 1.0.0. The code is developed
    **(1) Create a conda environment:**
 
    ```shell
-   $ conda env create -f sa.yaml
-   $ conda activate sa
+   $ conda env create -f rgbd.yaml
+   $ conda activate rgbd
    ```
 
    **(2) Install apex 0.1(needs CUDA)**
