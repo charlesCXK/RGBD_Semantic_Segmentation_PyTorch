@@ -69,6 +69,7 @@ The code is developed using Python 3.6 with PyTorch 1.0.0. The code is developed
    ```
 
 2. **Install dependencies.**
+
    **(1) Create a conda environment:**
 
    ```shell
@@ -113,7 +114,7 @@ If you want to generate HHA maps from Depth maps, please refer to [https://githu
 
 ## Training and Inference
 
-#### Training
+### Training
 
 Training on NYU Depth V2:
 
@@ -134,7 +135,7 @@ $ python -m torch.distributed.launch --nproc_per_node=$NGPUS train.py
 - Note that the only difference between `SA-Gate.nyu/` and `SA-Gate.nyu.432/` is the training/inference image crop size.
 - The tensorboard file is saved in `log/tb/` directory.
 
-#### Inference
+### Inference
 
 Inference on NYU Depth V2:
 
