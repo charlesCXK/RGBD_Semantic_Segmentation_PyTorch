@@ -2,9 +2,28 @@
 
 ![license](https://img.shields.io/badge/license-MIT-green) ![PyTorch-1.0.0](https://img.shields.io/badge/PyTorch-1.0.0-blue)
 
-**Official PyTorch implementation of "Bi-directional Cross-Modality Feature Propagation with Separation-and-Aggregation Gate for RGB-D Semantic Segmentation"** ([ECCV, 2020](http://eccv2020.eu/)).
+Implement some state-of-the-art methods of RGBD Semantic Segmentation task in PyTorch.
 
-<img src='pic/arch.png'>
+Currently, we provide code of:
+
+- **SA-Gate, ECCV 2020** [[arXiv](https://arxiv.org/abs/2007.09183)]
+  <img src='pic/sagate.png' width="600">
+- **Malleable 2.5D Convolution, ECCV 2020** [[arXiv](https://arxiv.org/abs/2007.09365)]
+  <img src='pic/malleable.png' width="600">
+
+
+
+## News
+
+- 2020/08/16
+
+Official code release for the paper **Malleable 2.5D Convolution: Learning Receptive Fields along the Depth-axis for RGB-D Scene Parsing**, *ECCV 2020*. [[arXiv](https://arxiv.org/abs/2007.09365)], [[code](./model/malleable2_5d.nyu.res101)]
+
+Thanks [aurora95](https://github.com/aurora95) for his open source code!
+
+- 2020/07/20
+
+Official code release for the paper **Bi-directional Cross-Modality Feature Propagation with Separation-and-Aggregation Gate for RGB-D Semantic Segmentation**, *ECCV 2020*. [[arXiv](https://arxiv.org/abs/2007.09183)], [[code](./model/SA-Gate.nyu)]
 
 ​
 
@@ -12,24 +31,25 @@
 
 #### Results on NYU Depth V2 Test Set with Multi-scale Inference
 
-|   Method   | mIoU (%) |
-| :--------: | :------: |
-|   3DGNN    |   43.1   |
-|   ACNet    |   48.3   |
-| RDFNet-101 |   49.1   |
-|   PADNet   |   50.2   |
-|    PAP     |   50.4   |
-|  **Ours**  | **52.4** |
+|       Method       | mIoU (%) |
+| :----------------: | :------: |
+|       3DGNN        |   43.1   |
+|       ACNet        |   48.3   |
+|     RDFNet-101     |   49.1   |
+|       PADNet       |   50.2   |
+|        PAP         |   50.4   |
+| **Malleable 2.5D** | **50.9** |
+|    **SA-Gate**     | **52.4** |
 
 #### Results on CityScapes Test Set with Multi-scale Inference (out method uses output stride=16 and does not use coarse-labeled data)
 
-|  Method  | mIoU (%) |
-| :------: | :------: |
-|  PADNet  |   80.3   |
-|  DANet   |   81.5   |
-|   GALD   |   81.8   |
-|  ACFNet  |   81.8   |
-| **Ours** | **82.8** |
+|   Method    | mIoU (%) |
+| :---------: | :------: |
+|   PADNet    |   80.3   |
+|    DANet    |   81.5   |
+|    GALD     |   81.8   |
+|   ACFNet    |   81.8   |
+| **SA-Gate** | **82.8** |
 
 For more details, please refer to our paper.
 
@@ -55,7 +75,7 @@ Your directory tree should look like this:
    |   |-- train.txt
 ```
 
-​
+
 
 ## Installation
 
@@ -114,6 +134,8 @@ If you want to generate HHA maps from Depth maps, please refer to [https://githu
 
 ## Training and Inference
 
+*We just take SA-Gate as an example. You could run other models in a similar way.*
+
 ### Training
 
 Training on NYU Depth V2:
@@ -154,8 +176,8 @@ $ python eval.py -e 300-400 -d 0-7 --save_path results
 
 Please consider citing this project in your publications if it helps your research.
 
-```
-@inproceedings{chen2020SAGate,
+```tex
+@inproceedings{chen2020-SAGate,
   title={Bi-directional Cross-Modality Feature Propagation with Separation-and-Aggregation Gate for RGB-D Semantic Segmentation},
   author={Chen, Xiaokang and Lin, Kwan-Yee and Wang, Jingbo and Wu, Wayne and Qian, Chen and Li, Hongsheng and Zeng, Gang},
   booktitle={European Conference on Computer Vision (ECCV)},
@@ -163,7 +185,17 @@ Please consider citing this project in your publications if it helps your resear
 }
 ```
 
-​
+```tex
+@inproceedings{xing2020-melleable,
+  title={Malleable 2.5D Convolution: Learning Receptive Fields along the Depth-axis for RGB-D Scene Parsing
+},
+  author={Xing, Yajie and Wang, Jingbo and Zeng, Gang},
+  booktitle={European Conference on Computer Vision (ECCV)},
+  year={2020}
+}
+```
+
+
 
 ## Acknowledgement
 

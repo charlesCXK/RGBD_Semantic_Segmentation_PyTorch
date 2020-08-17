@@ -6,13 +6,17 @@
 # @File    : init_func.py.py
 import torch
 import torch.nn as nn
-
+from seg_opr.conv_2_5d import *
 
 def __init_weight(feature, conv_init, norm_layer, bn_eps, bn_momentum,
                   **kwargs):
     for name, m in feature.named_modules():
         if isinstance(m, (nn.Conv1d, nn.Conv2d, nn.Conv3d)):
             conv_init(m.weight, **kwargs)
+        elif isinstance(m, Conv2_5D_Depth) or isinstance(m, Malleable_Conv2_5D_Depth):
+            conv_init(m.weight_0, **kwargs)
+            conv_init(m.weight_1, **kwargs)
+            conv_init(m.weight_2, **kwargs)
         elif isinstance(m, norm_layer):
             m.eps = bn_eps
             m.momentum = bn_momentum
@@ -41,6 +45,21 @@ def group_weight(weight_group, module, norm_layer, lr):
                 group_no_decay.append(m.bias)
         elif isinstance(m, (nn.Conv1d, nn.Conv2d, nn.Conv3d, nn.ConvTranspose2d, nn.ConvTranspose3d)):
             group_decay.append(m.weight)
+            if m.bias is not None:
+                group_no_decay.append(m.bias)
+        elif isinstance(m, Conv2_5D_Depth):
+            group_decay.append(m.weight_0)
+            group_decay.append(m.weight_1)
+            group_decay.append(m.weight_2)
+            if m.bias is not None:
+                group_no_decay.append(m.bias)
+        elif isinstance(m, Malleable_Conv2_5D_Depth):
+            group_decay.append(m.weight_0)
+            group_decay.append(m.weight_1)
+            group_decay.append(m.weight_2)
+            group_no_decay.append(m.depth_anchor)
+            group_no_decay.append(m.temperature)
+            group_no_decay.append(m.kernel_weight)
             if m.bias is not None:
                 group_no_decay.append(m.bias)
         elif isinstance(m, norm_layer) or isinstance(m, nn.BatchNorm1d) or isinstance(m, nn.BatchNorm2d) \

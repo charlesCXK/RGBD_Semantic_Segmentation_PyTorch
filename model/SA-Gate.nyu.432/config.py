@@ -19,7 +19,7 @@ cfg = C
 C.seed = 12345
 
 remoteip = os.popen('pwd').read()
-C.volna = '../../'      # this is the path to your repo 'SA-Gate'
+C.volna = '/home/chen/RGBD_Semantic_Segmentation_PyTorch/'      # this is the path to your repo 'RGBD_Semantic_Segmentation_PyTorch'
 
 """please config ROOT_dir and user when u first using"""
 C.repo_name = 'RGBD_Semantic_Segmentation_PyTorch'
